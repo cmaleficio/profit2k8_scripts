@@ -9,6 +9,7 @@ config = dotenv_values(".env")
 
 TLG_API_KEY = config.get("TLG_API_KEY")
 TLG_CHAT_ID = config.get("TLG_CHAT_ID")
+
 def bot_send_text(message):
     url = "https://api.telegram.org/bot"+TLG_API_KEY+"/sendMessage"
     payload = {
