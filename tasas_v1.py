@@ -10,7 +10,7 @@ from dotenv import load_dotenv, dotenv_values
 
 load_dotenv()
 SERVER = os.getenv("SERVER")
-DATABASE=  os.getenv("DATABASE_PRUEBA")
+DATABASE=  os.getenv("DATABASE_PROD")
 USERNAME = os.getenv("USER")
 PASSWORD = os.getenv("PASS")
 

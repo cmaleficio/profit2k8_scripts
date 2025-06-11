@@ -45,6 +45,10 @@ def fetch_and_insert_dollar_rate():
         VALUES ('USD', CONVERT(date, GETDATE()), 0, ?, '850', GETDATE(), ' ', GETDATE(), ' ', GETDATE(), ' ', ' ', 'UNI', NEWID())
         """
 
+        moneda_query = """ 
+        update moneda set cambio = ? where co_mone = 'USD'
+        """
+
         # Verificar si la respuesta fue exitosa y obtener el valor del dólar
         if response.status_code == 200:
             print("Conexión exitosa a la API de pydolarve")
@@ -53,8 +57,10 @@ def fetch_and_insert_dollar_rate():
             # Insertar el valor del dólar en la base de datos
             try:
                 cursor.execute(tasas_query, usd)
+                cursor.execute(moneda_query, usd)
                 conn.commit()
-                print("Valor del dólar insertado en la base de datos")
+                print("Valor del dólar insertado en la tabla tasas y actualizado en la tabla moneda")
+                # Enviar mensaje al bot de Telegram
                 tlg_bot_tasa.bot_send_text(f"Se ha actualizado la Tasa del dia en el sistema a : {usd}")
             except pyodbc.Error as e:
                 print(f"Error al insertar el valor del dólar en la base de datos: {str(e)}")
@@ -84,11 +90,12 @@ def job():
         print("Hoy es domingo, no se ejecuta la tarea.")
 
 # Programar la tarea para que se ejecute a las 00:02 de lunes a viernes
-schedule.every().day.at("00:01").do(job)
+#schedule.every(1).minute.at("00:01").do(job)
+schedule.every().day.at("00:00").do(job)
 
 # Bucle principal para mantener el script corriendo
 if __name__ == "__main__":
-    print("Script iniciado. Esperando la hora programada (00:02, Lunes a Sabado)...")
+    print("Script iniciado. Esperando la hora programada (12:00 AM, Lunes a Sabado)...")
     while True:
         schedule.run_pending()
         time.sleep(60)  # Esperar 60 segundos antes de verificar nuevamente
