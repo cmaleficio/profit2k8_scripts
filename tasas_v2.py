@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 # Configuración de logging
 logging.basicConfig(
-    filename='C:\Users\cmarffisis\Desktop\PROFIT\TASAS\tasas_v2.log',
+    filename='C:/Users/cmarffisis/Desktop/PROFIT/TASAS/tasas_v2.log',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
@@ -121,7 +121,7 @@ def job():
 schedule.every().day.at("00:00").do(job)
 
 if __name__ == "__main__":
-    logging.info("Script iniciado. Esperando la hora programada (12:00 AM, Lunes a Viernes)...")
+    logging.info("Script iniciado. Esperando la hora programada (12:00 AM, Lunes a Sabado)...")
     while True:
         schedule.run_pending()
         time.sleep(60)
