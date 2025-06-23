@@ -1,1 +1,7 @@
 2025-06-21 11:08:18 - INFO - Script iniciado. Esperando la hora programada (12:00 AM, Lunes a Viernes)...
+2025-06-21 11:09:22 - INFO - Script iniciado. Esperando la hora programada (12:00 AM, Lunes a Sabado)...
+2025-06-22 00:00:23 - INFO - Hoy es sábado o domingo, no se ejecuta la tarea.
+2025-06-23 00:00:24 - INFO - Ejecutando tarea a las 2025-06-23 00:00:24.011402
+2025-06-23 00:00:24 - INFO - Conexión exitosa a la base de datos
+2025-06-23 00:00:24 - INFO - Conexión exitosa a la API de pydolarve
+2025-06-23 00:00:28 - INFO - Valor del dólar insertado en la tabla tasas y actualizado en la tabla moneda
